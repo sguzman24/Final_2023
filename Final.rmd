@@ -1,6 +1,6 @@
 ---
 title: "Covid91 vaccine study Final2023"
-author: "Put your name here!"
+author: "Seth Guzman"
 output: 
   html_document:
     number_sections: true
@@ -24,17 +24,171 @@ mutate(across(where(is.character), as.factor))
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
+data from this study is taken from FinalData
+
+
+$H_0$: the vaccine is ineffective in treating people with in the four subgroups
+
+$H_A$: the vaccine is effective in treating peopole with in the four subgroups
+
+
+
+## Methods
+
+The statistical analysis i will be using to sort the data will be cat~cat
+because we are putting the sub groups into category 
+
+
+
+the methods we will use to display the data is  bar chart, cross table, and chi squared test
+
+## sub categorize male data
+```{r}
+maleData = filter (FinalData,sex == "M")
+```
+
+
 ## Males
+
+
+## Graphical Results
+```{r} 
+barchartGC(~infected+treatment,data=maleData)
+barchartGC(~infected+treatment,data=maleData, type="percent")
+
+```
+This graph shows use that from the all male group of people who contracted the ones who received a vaccine had less symptoms then those with the placebo while the all male group that didnt contract covid showed no difference between those who were vaccinated and un vaccinated.
+## Numerical Results
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=maleData)
+rowPerc(table1)
+colPerc(table1)
+```
+
+This table shows that the group with covid experienced a 2x difference between the vaccinated and un vaccinated. The placebo group had a 70% infection rate compared to the vaccinated group which only had 30%. The Ok group had no significant difference between the unvaccinated and vaccinated 
+
+## Inferential Result
+
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The p value is 4.631e-14  making it to small to be in significant therfore disproving the null hypothesis
+
+Based on Fishers exact value You become .35% more susceptible to contracting covid if you are unvaccinated 
+
+
+
+
+
+## sub categorizing female data
+
+```{r}
+femaleData = filter (FinalData,sex == "F")
+```
 
 
 ## Females
 
+## Graphical Results
 
+```{r}
+barchartGC(~infected + treatment, data=femaleData)
+barchartGC(~infected+treatment, data=femaleData, type="percent")
+
+```
+
+This graph shows use that from the all female group of people who contracted the ones who received a vaccine had less symptoms then those with the placebo while the all female group that didnt contract covid showed no difference between those who were vaccinated and un vaccinated.
+
+
+## Numerical Results
+
+```{r}
+table2 <- xtabs(~infected + treatment, data=femaleData)
+rowPerc(table2)
+colPerc(table2)
+```
+
+This table shows that within the all female group those who werent vaccinated had a 60% infection rate while those who were vaccinated had a 40% infection rate. 
+
+In the all female group that contracted covid those with the vaccine had .67% less symptons compared to those who werent vaccinated 
+
+
+
+
+## Inferential Result
+
+```{r}
+chisq.test(table2)
+chisqtestGC(table2)
+fisher.test(table2)
+```
+The p value within the female group is  0.0002162 showing that theres a insignificant differences so i am failing to reject the null hyothesis and conclude the covid vaccine is inneftive within the female population
+
+## subsetting lgtbq data
+
+```{r}
+LGBTQData = filter (FinalData,LGBTQ == "gay")
+```
 ## LGBTQ
+## Graphical Results
+
+```{r}
+barchartGC(~infected+treatment, data=LGBTQData)
+barchartGC(~infected+treatment, data=LGBTQData, type="percent")
+
+```
+
+This Graph shows that within the lgbtq subgroup Those afflicted with covid 19 and that were vaccinated experienced more symptoms then their un vaccinated counter part. forthe people who never contracted covid vaxxed or un-vaxxed it didn't show any difference 
 
 
+## Numerical Results
 
+```{r}
+table3 <- xtabs(~infected + treatment, data=LGBTQData)
+rowPerc(table3)
+colPerc(table3)
+```
+
+
+## Inferential Result
+```{r}
+chisq.test(table3)
+chisqtestGC(table3)
+fisher.test(table3)
+```
+
+## subset druggie data
+```{r}
+DrugUserData = filter(FinalData, DrugUser == "yes")
+```
 ## Druggies
+## Graphical Results
 
+```{r}
+barchartGC(~infected + treatment, data=DrugUserData)
+barchartGC(~infected+treatment, data=DrugUserData, type="percent")
+
+```
+
+## Numerical Results
+
+```{r}
+table4 <- xtabs(~infected + treatment, data=LGBTQData)
+rowPerc(table4)
+colPerc(table4)
+```
+
+## Inferential Result
+
+```{r}
+chisq.test(table4)
+chisqtestGC(table4)
+fisher.test(table4)
+```
 
 # Overall Results and Conclusions
