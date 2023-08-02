@@ -27,9 +27,9 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 data from this study is taken from FinalData
 
 
-$H_0$: the vaccine is ineffective in treating people with in the four subgroups
+$H_0$: the vaccines has no effect on people within a subgroup
 
-$H_A$: the vaccine is effective in treating peopole with in the four subgroups
+$H_A$: the vaccine has an effect on people with in the four subgroups
 
 
 
@@ -143,7 +143,7 @@ barchartGC(~infected+treatment, data=LGBTQData, type="percent")
 
 ```
 
-This Graph shows that within the lgbtq subgroup Those afflicted with covid 19 and that were vaccinated experienced more symptoms then their un vaccinated counter part. forthe people who never contracted covid vaxxed or un-vaxxed it didn't show any difference 
+This Graph shows that within the lgbtq subgroup Those afflicted with covid 19 and that were vaccinated experienced more symptoms then their un vaccinated counter part. for the people who never contracted covid vaxxed or un-vaxxed it didn't show any difference 
 
 
 ## Numerical Results
@@ -154,6 +154,10 @@ rowPerc(table3)
 colPerc(table3)
 ```
 
+This table shows that within the all gay group those who werent vaccinated had a 15.38% infection rate while those who were vaccinated had a 84.62% infection rate. 
+
+In the all gay group that contracted covid those with the vaccine had 2.8x more symptons compared to those who werent vaccinated
+
 
 ## Inferential Result
 ```{r}
@@ -161,6 +165,9 @@ chisq.test(table3)
 chisqtestGC(table3)
 fisher.test(table3)
 ```
+
+The p value within the LGBTQ group is  .00000006668  showing that theres a significant difference so i am rejecting the null hyothesis and conclude the covid vaccine has an effect within the LGBTQ population
+
 
 ## subset druggie data
 ```{r}
