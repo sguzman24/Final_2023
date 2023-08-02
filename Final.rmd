@@ -29,7 +29,7 @@ data from this study is taken from FinalData
 
 $H_0$: the vaccines has no effect on people within a subgroup
 
-$H_A$: the vaccine has an effect on people with in the four subgroups
+$H_A$: the vaccine has an effect on people within a subgroup
 
 
 
@@ -66,7 +66,9 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-This table shows that the group with covid experienced a 2x difference between the vaccinated and un vaccinated. The placebo group had a 70% infection rate compared to the vaccinated group which only had 30%. The Ok group had no significant difference between the unvaccinated and vaccinated 
+The data shows us that 69.57% of the unvaccinated male group experienced symptons while only 30.43% of the vaccinated males experienced symptoms
+
+It also tells us that from the male placebo group 2.55% of them contracted covid while only 1.15% of the vaccinated group contracted covid
 
 ## Inferential Result
 
@@ -112,10 +114,9 @@ table2 <- xtabs(~infected + treatment, data=femaleData)
 rowPerc(table2)
 colPerc(table2)
 ```
+The data from this table shows that from the female group that were infected with covid-19 of those who were unvaxed 60% of them experienced symptoms while only 40% of people in the vaccinated group experienced symptoms 
 
-This table shows that within the all female group those who werent vaccinated had a 60% infection rate while those who were vaccinated had a 40% infection rate. 
-
-In the all female group that contracted covid those with the vaccine had .67% less symptons compared to those who werent vaccinated 
+This data also depicts that within the female placebo group 2.04% were infected with covid but only 1.37% of the vaccinated group 
 
 
 
@@ -156,7 +157,7 @@ colPerc(table3)
 
 This table shows that within the all gay group those who werent vaccinated had a 15.38% infection rate while those who were vaccinated had a 84.62% infection rate. 
 
-In the all gay group that contracted covid those with the vaccine had 2.8x more symptons compared to those who werent vaccinated
+From the all gay placebo group only .66% of the unvaccinated got infected with covid-19 while a large 3.54% of vaccinated gay people got infected with covid_19
 
 
 ## Inferential Result
@@ -166,7 +167,7 @@ chisqtestGC(table3)
 fisher.test(table3)
 ```
 
-The p value within the LGBTQ group is  .00000006668  showing that theres a significant difference so i am rejecting the null hyothesis and conclude the covid vaccine has an effect within the LGBTQ population
+The p value within the LGBTQ group is  0.0000006668  showing that theres a significant difference so i am rejecting the null hyothesis and conclude the covid vaccine has an effect within the LGBTQ population
 
 
 ## subset druggie data
@@ -181,6 +182,9 @@ barchartGC(~infected + treatment, data=DrugUserData)
 barchartGC(~infected+treatment, data=DrugUserData, type="percent")
 
 ```
+
+This graph shows that for druggies who were infected wih covid-19 those who were vaccinated actually experienced more symptoms then those that were unvaccinated. The druggies who didnt get infected with covid-19 wether vaccinated or unvaccinated showed no difference
+
 
 ## Numerical Results
 
