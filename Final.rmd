@@ -40,7 +40,7 @@ because we are putting the sub groups into category
 
 
 
-the methods we will use to display the data is  bar chart, cross table, and chi squared test
+the methods we will use to display the data for the different is  bar chart, cross table, and chi squared test
 
 ## sub categorize male data
 ```{r}
@@ -57,7 +57,11 @@ barchartGC(~infected+treatment,data=maleData)
 barchartGC(~infected+treatment,data=maleData, type="percent")
 
 ```
+
+
 This graph shows use that from the all male group of people who contracted the ones who received a vaccine had less symptoms then those with the placebo while the all male group that didnt contract covid showed no difference between those who were vaccinated and un vaccinated.
+
+
 ## Numerical Results
 
 ```{r}
@@ -79,13 +83,11 @@ chisqtestGC(table1)
 fisher.test(table1)
 ```
 
-The p value is 4.631e-14  making it to small to be in significant therfore disproving the null hypothesis
+The p value for the chi squared test is .0000000000001098 which indicates a very significant relationship between the variables therefore disproving the null hypothesis $H_A$ giving strong evidence for the presence of a association between the variables
 
-Based on Fishers exact value You become .35% more susceptible to contracting covid if you are unvaccinated 
+For the fisher exact test the pvalue is .00000000000004631 giving a strong basis for the observed association between the variables to unlikely have occurred by chance alone.
 
-
-
-
+It also gives us a Odds ratio showing theres a  2.242522% higher chance of the events odds happening in one group giving more evidence to the positive association of the variables and rejection of the null $H_A$
 
 ## sub categorizing female data
 
@@ -104,7 +106,7 @@ barchartGC(~infected+treatment, data=femaleData, type="percent")
 
 ```
 
-This graph shows use that from the all female group of people who contracted the ones who received a vaccine had less symptoms then those with the placebo while the all female group that didnt contract covid showed no difference between those who were vaccinated and un vaccinated.
+This graph shows use that from the all female group of people who contracted covid-19 the ones who received a vaccine had less symptoms overall then those with the placebo. while the all female group that didnt contract covid showed almost no difference between those who were vaccinated and un vaccinated.
 
 
 ## Numerical Results
@@ -128,8 +130,15 @@ chisq.test(table2)
 chisqtestGC(table2)
 fisher.test(table2)
 ```
-The p value within the female group is  0.0002162 showing that theres a insignificant differences so i am failing to reject the null hyothesis and conclude the covid vaccine is inneftive within the female population
 
+
+The data suggests a significant relationship between the treatment type (placebo vs. vaccine) and infection status based on Pearson's Chi-squared test (p-value = 0.0003). Therefore, we reject the null hypothesis $H_A$ , indicating that there is an association between the variables.
+
+
+
+Fisher's exact test for count data on table2 reveals a odds ratio of (1.493076) with a 95% confidence interval of 1.199509 to 1.862988 suggesting a statistically significant positive association between the two categorical variables, indicating that the event's odds are about 1.49 times higher in one group compared to the other.
+
+The p-value from fishers exact test (0.0002162) indicates strong evidence against the null hypothesis, suggesting a statistically significant association between the two categorical variables again disproving the null $H_A$
 ## subsetting lgtbq data
 
 ```{r}
@@ -155,7 +164,7 @@ rowPerc(table3)
 colPerc(table3)
 ```
 
-This table shows that within the all gay group those who werent vaccinated had a 15.38% infection rate while those who were vaccinated had a 84.62% infection rate. 
+This table shows that within the all gay placebo group  15.38% experienced symptoms while 84.62% of the vaccinated group had symptoms 
 
 From the all gay placebo group only .66% of the unvaccinated got infected with covid-19 while a large 3.54% of vaccinated gay people got infected with covid_19
 
@@ -167,7 +176,13 @@ chisqtestGC(table3)
 fisher.test(table3)
 ```
 
-The p value within the LGBTQ group is  0.0000006668  showing that theres a significant difference so i am rejecting the null hyothesis and conclude the covid vaccine has an effect within the LGBTQ population
+The p value within the LGBTQ group is  0.0000006668  showing that theres a significant association between the variables  so i am rejecting the null hyothesis $H_A$ and conclude the covid vaccine has an effect within the LGBTQ population
+
+the fishers exact tesst p value is  1.029e-08 giving evidence for the extremely low probability of obtaining the observed results by chance alone, suggesting a highly significant association between the variables therefore disproving the null hypothesis $H_A$
+
+The odds ratio of the fisher exact test is  0.181787 indicating that the event's odds are approximately 0.18 times lower in one variable group compared to the other, implying a significant difference between the two groups. Again adding to the body of evidence against the null hyopthesis $H_A$
+
+
 
 
 ## subset druggie data
@@ -183,16 +198,21 @@ barchartGC(~infected+treatment, data=DrugUserData, type="percent")
 
 ```
 
-This graph shows that for druggies who were infected wih covid-19 those who were vaccinated actually experienced more symptoms then those that were unvaccinated. The druggies who didnt get infected with covid-19 wether vaccinated or unvaccinated showed no difference
+This graph shows that for druggies who were infected with covid-19 those who were vaccinated actually experienced more symptoms then those that were un-vaccinated. The druggies who didnt get infected with covid-19 wether vaccinated or un-vaccinated showed an insignificant difference
 
 
 ## Numerical Results
 
 ```{r}
-table4 <- xtabs(~infected + treatment, data=LGBTQData)
+table4 <- xtabs(~infected + treatment, data=DrugUserData)
 rowPerc(table4)
 colPerc(table4)
 ```
+
+The table shows that for the placebo druggie group 11.67% of them experienced covid19 symptoms when they were infected with covid-19 while 88.33% of vaccinated drug users experienced symptons 
+
+The bottom table is showing that .4% of the placebo group got infected with  covid while 3.06% of the vaccinated group got infected with covid
+
 
 ## Inferential Result
 
@@ -202,4 +222,34 @@ chisqtestGC(table4)
 fisher.test(table4)
 ```
 
+The p-value of .000000002842 from the Pearson's Chi-squared test indicates a highly significant association between the variables, leading to the rejection of the null hypothesis $H_A$.
+
+Fisher's exact test yielded a highly significant p-value (2.32e-10) and a 95% confidence interval (0.0482 to 0.2791), indicating a strong association between the categorical variables, with the estimated odds ratio being 0.126 it suggest that the odds of the event occurring are substantially lower in one group compared to the other, supported by a 95 percent confidence interval ranging from 0.04819608 to 0.27914768 , this body of evidence leads me to reject the null hypothesis $H_A$ .
+
+
 # Overall Results and Conclusions
+
+
+The goal of this statistical analysis was to analyze the variables (the subgroups), (vaccine) and figure out if there was a relationship between the two variables and determine wether or not each individual subgroup should take the vaccine or not. I will be summarizing the findings of this report starting with male followed by females then LGBTQ and finally Drug Users.
+
+Starting with the male group our bar chart showed us that a larger perecentage of the placebo group got symptoms then those who were vaccinated which had a lower % of people experiencing symptoms. The cross table gives us a preciser look at what the bar chart was showing which is that 69.75% of unvaccinated males experienced symptoms when infected with covid while only 30.43% of vaccinated men experienced symptoms when infected with covid-19 and 2.55% of un-vaccinated men got infected with covid while only 1.15% of vaccinated males contracted covid-19. The CHI squared test gave us a p value of .0000000000001098 which indicates a very significant relationship between the variables therefore disproving the null hypothesis $H_A$. For the fisher exact test the pvalue is .00000000000004631 giving a strong basis for the observed association between the variables to unlikely have occurred by chance alone.
+It also gives us a Odds ratio showing theres a  2.242522% higher chance of the events odds happening in one group giving more evidence to the positive association of the variables and rejection of the null $H_A$ after reviewing this evidence i conclude that the vaccine has an effect on the male subgroup and it affects them positively by reducing there chance of getting infected and decreasing their symptoms if they do get infected so i would suggest males to receive the vaccine. 
+
+
+Now onto the female group the bar chart showed us that of the group of people who contracted covid-19 the ones who received a vaccine had less symptoms overall then those with the placebo. while the all female group that didn't contract covid-19 showed almost no difference between those who were vaccinated and un vaccinated. The cross table showed that the group that were infected with covid-19 , those who were unvaxed 60% of them experienced symptoms while only 40% of people in the vaccinated group experienced symptoms This data also depicts that within the female placebo group 2.04% were infected with covid but only 1.37% of the vaccinated group. The CHI squared test data suggests a significant relationship between the treatment type (placebo vs. vaccine) and infection status based on Pearson's Chi-squared test (p-value = 0.0003). Therefore, we reject the null hypothesis $H_A$. The Fisher's exact test for count data on table2 reveals a odds ratio of (1.493076) with a 95% confidence interval of 1.199509 to 1.862988 suggesting a statistically significant positive association between the two categorical variables, indicating that the event's odds are about 1.49 times higher in one group compared to the other.The p-value from fishers exact test (0.0002162) indicates strong evidence against the null hypothesis, suggesting a statistically significant association between the two categorical variables again disproving the null $H_A$. By interpreting this data i conclude that the vaccine has an effect on the female group and it affects them positively by reducing there chance of getting infected while also reducing their chance of experiencing symptoms so i would suggest females to take the vaccine.
+
+
+Now we move onto the LGBTQ population. By examining the bar chart ive found those who were vaccinated to have experience more symptoms then those who were un-vaccinated. Moving onto the cross table for a deeper look into the data we can see that 15.38% of the unvaccinated group experienced symptoms while 84.62% of the vaccinated group experienced symptoms when inflicted with covid-19. From the placebo group .66% of them got infected with covid-19 while 3.54% of the vaccinated group got infected with covid-19. Looking at the CHI squared test we can see 
+The p value  is  0.0000006668  showing that theres a significant association between the variables  so i am rejecting the null hyothesis $H_A$. Now by looking at the fishers exact test we see the fishers exact tesst p value is  1.029e-08 giving evidence for the extremely low probability of obtaining the observed results by chance alone. The odds ratio of the fisher exact test is  0.181787 indicating that the event's odds are approximately 0.18 times lower in one variable group compared to the other, implying a significant difference between the two groups. Again adding to the body of evidence against the null hyopthesis $H_A$. With all this in mind ive come to the conclusion that The vaccine has an effect on the lgbtq group now the effect it has on the group is actually a negative one. Vaccination apears to increase the probability of getting infected with covid-19 and experiencing more symptoms when infected with the disease compared to those who didn't recive the vaccine. So i would highly suggest to not get vaccinated if you are gay.
+
+
+Finaly we will examine the vaccines relationship to the drug user group. The bar chart showed us that vaccinated drug users experienced more symptoms then their un-vaccinated counter part. The cross table shows that  88.33% of vaccinated drug users experienced symptoms while only 11.67% of un-vaccinated drug users experienced symptoms when infected with covid-19.Onto the findings of the CHI squared test and fishers exact test.
+The p-value of .000000002842 from the Pearson's Chi-squared test indicates a highly significant association between the variables, leading to the rejection of the null hypothesis $H_A$.The Fisher's exact test yielded a highly significant p-value (2.32e-10) and a 95% confidence interval (0.0482 to 0.2791), indicating a strong association between the categorical variables, with the estimated odds ratio being 0.126 it suggest that the odds of the event occurring are substantially lower in one group compared to the other, supported by a 95 percent confidence interval ranging from 0.04819608 to 0.27914768. these findings have led me to belive that the vaccine does have an effect on drug users but it negatively impacts them by increasing their likelyhood of contracting covid-19 and raising their likelyhood of experiencing symptoms. so i will highly suggest agaisnt taking the vaccine if you are a drug user.
+
+
+Concluding this lengthy statistical anylysis ive found the vaccine to have an effect on all the subgroups $H_A$. Male and Females experience postive effects from the vaccine such as lower covid-19 infection rates and symptom rates. The opposite is true for the LGBTQ and Drug Users who experienced higher symptom and infection rates if vaccinated.
+
+
+
+
+
